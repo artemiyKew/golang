@@ -19,5 +19,12 @@ func main() {
 
 	age := 10
 	fmt.Println(i, a, b, c, hello, name, surName, "age =", age)
+
 	TestDataTypes()
+	ArrayTest()
+	Conditions()
+	Loops()
+	Functions()
+	Slices()
+	Maps()
 }
