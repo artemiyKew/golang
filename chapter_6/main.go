@@ -4,5 +4,8 @@ import "fmt"
 
 func main() {
 	fmt.Println("Hello")
-	TypeAssertion()
+	// TypeAssertion()
+
+	//Goroutines()
+	Sync()
 }
