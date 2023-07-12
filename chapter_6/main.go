@@ -13,7 +13,8 @@ func main() {
 	// Sync()
 	// Channel()
 	// Select()
-	Context()
+	// Context()
+	ChannelTest()
 	// counter := Counter{}
 
 	// counter.Increment()
