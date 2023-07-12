@@ -12,7 +12,8 @@ func main() {
 	//Goroutines()
 	// Sync()
 	// Channel()
-	Select()
+	// Select()
+	Context()
 	// counter := Counter{}
 
 	// counter.Increment()

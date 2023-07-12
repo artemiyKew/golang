@@ -12,10 +12,10 @@ m.Unlock()
 
 <b>Channels</b>
 type chan struct {
-  mx sync.mutex
-  buffer []T
-  readers []Goroutines
-  writers []Goroutines
+    mx sync.mutex
+    buffer []T
+    readers []Goroutines
+    writers []Goroutines
 }
 
 I. Nil channel
@@ -35,8 +35,8 @@ II. Unbuffered channel
     writers []Goroutines
   }
 
-    4. Направленность канала
-    5. Закрытие канала: close. Всегда закрывать отправителем
+4. Направленность канала
+5. Закрытие канала: close. Всегда закрывать отправителем
 
 III. Buffered channel
     1. Создание
