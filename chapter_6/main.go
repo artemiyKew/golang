@@ -14,7 +14,9 @@ func main() {
 	// Channel()
 	// Select()
 	// Context()
-	ChannelTest()
+	// ChannelTest()
+	// ErrGroup()
+	Atomic()
 	// counter := Counter{}
 
 	// counter.Increment()

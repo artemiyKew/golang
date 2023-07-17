@@ -59,3 +59,16 @@ V: For..range
 1. select - block, unblock, default
 2. time.After
 3. graceful shutdown
+
+<b>Atomic</b>
+T: int32, int64, uint32, uint64, uintptr
+
+1. AddT
+
+2. LoadT
+3. StoreT
+4. SwapT
+
+5. CompareAndSwapT
+
+6. atomic.Value

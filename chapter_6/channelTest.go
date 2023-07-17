@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"math/rand"
 	"sync"
@@ -31,9 +32,7 @@ func ChannelTest() {
 
 	go func() {
 		winner, ok = <-resultCh
-		if !ok {
-			log.Printf("Car was not found, please try later")
-		}
+		fmt.Println(ok)
 		cancel()
 	}()
 	wg.Wait()
@@ -44,14 +43,16 @@ func ChannelTest() {
 }
 
 func searchService(ctx context.Context, service string, resultCh chan<- string) {
-	time.Sleep(time.Second * 3)
+	time.Sleep(time.Second * 1)
 	for {
 		select {
 		case <-ctx.Done():
 			log.Printf("stopped the search in %q (%v)", service, ctx.Err())
 			return
 		default:
-			if rand.Float64() > 0.5 {
+			r := rand.Float64()
+			fmt.Println(r, ":", service)
+			if r > 0.75 {
 				resultCh <- service
 				return
 			}
