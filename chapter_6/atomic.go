@@ -9,9 +9,11 @@ import (
 )
 
 func Atomic() {
-	addMutex()
-	addAtomic()
-	storeLoadSwap()
+	// addMutex()
+	// addAtomic()
+	// storeLoadSwap()
+	// compareAndSwap()
+	atomicVal()
 }
 
 func addMutex() {
@@ -27,8 +29,8 @@ func addMutex() {
 		go func() {
 			defer wg.Done()
 			mu.Lock()
+			defer mu.Unlock()
 			counter++
-			mu.Unlock()
 		}()
 	}
 
@@ -68,5 +70,37 @@ func storeLoadSwap() {
 }
 
 func compareAndSwap() {
+	var (
+		counter int64
+		wg      = &sync.WaitGroup{}
+	)
 
+	wg.Add(100)
+
+	for i := 0; i < 100; i++ {
+		go func(i int) {
+			defer wg.Done()
+			if !atomic.CompareAndSwapInt64(&counter, 0, 1) {
+				return
+			}
+			log.Println("Swapped goroutine numbers is ", i)
+		}(i)
+	}
+	wg.Wait()
+	fmt.Println(counter)
+}
+
+func atomicVal() {
+	var (
+		value atomic.Value
+	)
+
+	value.Store(1)
+	fmt.Println(value.Load())
+
+	fmt.Println(value.Swap(5))
+	fmt.Println(value.Load())
+
+	fmt.Println(value.CompareAndSwap(5, 10))
+	fmt.Println(value.Load())
 }
