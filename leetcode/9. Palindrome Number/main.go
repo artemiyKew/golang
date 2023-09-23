@@ -28,5 +28,6 @@ func isPalindrome(s string) bool {
 		rString += string(newString[i])
 	}
 	fmt.Println(newString, rString)
+
 	return newString == rString
 }

@@ -27,7 +27,7 @@ func add(x, y int, opertaion func(...int)) int {
 }
 
 func returnValue() (int, string) {
-	return 404, "Erorr"
+	return 404, "Error"
 }
 
 /*
