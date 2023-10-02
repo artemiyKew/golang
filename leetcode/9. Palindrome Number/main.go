@@ -2,32 +2,30 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func main() {
-	fmt.Println("Hello")
-	// arr := []int{2, 1, 2, 1, 0, 1, 2}
-	fmt.Println(isPalindrome("race a car"))
+	fmt.Println(plusOne([]int{9}))
 }
 
-func isPalindrome(s string) bool {
-	s = strings.ToLower(s)
-	s = strings.ReplaceAll(s, " ", "")
-	newString := ""
-	for i := 0; i < len(s); i++ {
-		fmt.Println(s[i])
-		if (s[i] >= 'a' && s[i] >= 'z') || (s[i] >= '0' && s[i] >= '9') {
-			newString += string(s[i])
+func plusOne(digits []int) []int {
+	if (digits[len(digits)-1]+1)%10 != 0 {
+		digits[len(digits)-1] += 1
+		return digits
+	} else {
+		for i := len(digits) - 1; i >= 0; i-- {
+			if i == 0 && (digits[i]+1)%10 == 0 {
+				digits[i] = 0
+				digits = append([]int{1}, digits...)
+				break
+			}
+			if (digits[i]+1)%10 == 0 {
+				digits[i] = 0
+			} else {
+				digits[i] += 1
+				break
+			}
 		}
 	}
-	rString := ""
-	fmt.Println(newString, rString)
-	for i := len(newString) - 1; i >= 0; i-- {
-		// fmt.Println(newString[i])
-		rString += string(newString[i])
-	}
-	fmt.Println(newString, rString)
-
-	return newString == rString
+	return digits
 }
