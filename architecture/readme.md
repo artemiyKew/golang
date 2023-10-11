@@ -125,12 +125,12 @@ _Dependency Injection (DI)_ - это паттерн проектирования
 # Паттерн Репозиторий
 _Репозиторий_ (Repository) - это популярный подход к организации доступа к данным в приложении. Он позволяет абстрагироваться от деталей хранения данных и предоставляет единый интерфейс для работа с данными.
 
-```go
+```golang
     // repository.go
-    type User struct {
-        ID int
-        Name string
-        Email string
+   type User struct {
+        ID       int
+        Name     string
+        Email    string
         Password string
     }
 
