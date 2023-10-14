@@ -107,7 +107,6 @@ func writeWithMutex() {
 			mu.Unlock()
 		}()
 	}
-	// идет потеря из-за DataRace -> readme.md
 	wg.Wait()
 	fmt.Println(counter)
 	fmt.Println(time.Since(start).Seconds())

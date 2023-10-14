@@ -208,3 +208,83 @@ func (r *InMemoryUserRepository) Delete(id int) error {
 	fmt.Println(repo.GetAll())
 }
 ```
+
+---
+
+# Functional Options
+
+```golang
+func NewClient(host string, port uint16) *Client {
+	return &Client{
+		host: host,
+		port: port,
+	}
+}
+
+func NewClientWithTimeout(host string, port uint16, timeout time.Duration) *Client {
+	return &Client{
+		host:    host,
+		port:    port,
+		timeOut: timeout,
+	}
+}
+
+type Client struct {
+	host    string
+	port    uint16
+	timeOut time.Duration
+	retry   int
+}
+```
+
+```golang
+type Options struct {
+	timeout time.Duration
+	retry   uint
+}
+
+type Option func(*Options)
+
+func Timeout(timeout time.Duration) Option {
+	return func(o *Options) {
+		o.timeout = timeout
+	}
+}
+
+func Retry(retry uint) Option {
+	return func(o *Options) {
+		o.retry = retry
+	}
+}
+```
+
+```golang
+// updated NewClient() {}
+func NewClient(host string, port uint16, setters ...Option) *Client {
+	options := Options{
+		timeout: 1 * time.Second,
+		retry:   2,
+	}
+
+	for _, setter := range setters {
+		setter(&options)
+	}
+
+	return &Client{
+		host: host,
+		port: port,
+	}
+}
+```
+
+---
+
+# Работа с ошибками
+Организация работы с ошибками сильно влияет на архитектруа кода. Помогает опередлить root case при поиске проблем. Помогает рпавильно организовать логику в коде.
+_Всегда в ошбике надо передовать контекст_
+```golang
+func Foo(ctx context.Context) error {
+	// Do some work
+	return fmt.Errorf("error description: %w", err)
+}
+```

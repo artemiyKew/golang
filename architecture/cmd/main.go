@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"time"
 )
 
 func main() {
@@ -80,4 +81,46 @@ func (r *InMemoryUserRepository) Delete(id int) error {
 		}
 	}
 	return errors.New("user not found")
+}
+
+func NewClient(host string, port uint16, setters ...Option) *Client {
+	options := Options{
+		timeout: 1 * time.Second,
+		retry:   2,
+	}
+
+	for _, setter := range setters {
+		setter(&options)
+	}
+
+	return &Client{
+		host: host,
+		port: port,
+	}
+}
+
+type Client struct {
+	host    string
+	port    uint16
+	timeOut time.Duration
+	retry   int
+}
+
+type Options struct {
+	timeout time.Duration
+	retry   uint
+}
+
+type Option func(*Options)
+
+func Timeout(timeout time.Duration) Option {
+	return func(o *Options) {
+		o.timeout = timeout
+	}
+}
+
+func Retry(retry uint) Option {
+	return func(o *Options) {
+		o.retry = retry
+	}
 }
