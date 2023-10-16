@@ -40,8 +40,8 @@ func baseKnowledge() {
 }
 
 func workerPool() {
-	ctx, cancel := context.WithCancel(context.Background())
-	ctx, cancel = context.WithTimeout(ctx, time.Millisecond*20)
+	// ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*20)
 	defer cancel()
 
 	wg := &sync.WaitGroup{}
@@ -55,7 +55,7 @@ func workerPool() {
 		}()
 	}
 	go func() {
-		for i := 0; i < 1000; i++ {
+		for i := 0; i < 20; i++ {
 			// if i == 500 {
 			// 	cancel()
 			// }

@@ -13,10 +13,10 @@ func main() {
 	// Sync()
 	// Channel()
 	// Select()
-	// Context()
+	Context()
 	// ChannelTest()
 	// ErrGroup()
-	Atomic()
+	// Atomic()
 	// counter := Counter{}
 
 	// counter.Increment()

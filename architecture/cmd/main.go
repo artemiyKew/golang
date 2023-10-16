@@ -1,25 +1,27 @@
 package main
 
 import (
+	"architecture/cmd/search"
 	"errors"
-	"fmt"
+
 	"time"
 )
 
 func main() {
-	repo := &InMemoryUserRepository{}
-	user := &User{
-		Name:     "John",
-		Email:    "john@example.com",
-		Password: "secret",
-	}
-	repo.Create(user)
-	fmt.Println(repo.GetAll())
-	user.Name = "Jane"
-	repo.Update(user)
-	fmt.Println(repo.GetAll())
-	repo.Delete(user.ID)
-	fmt.Println(repo.GetAll())
+	// repo := &InMemoryUserRepository{}
+	// user := &User{
+	// 	Name:     "John",
+	// 	Email:    "john@example.com",
+	// 	Password: "secret",
+	// }
+	// repo.Create(user)
+	// fmt.Println(repo.GetAll())
+	// user.Name = "Jane"
+	// repo.Update(user)
+	// fmt.Println(repo.GetAll())
+	// repo.Delete(user.ID)
+	// fmt.Println(repo.GetAll())
+	search.Search()
 }
 
 // repository.go
